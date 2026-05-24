@@ -59,6 +59,29 @@ services:
     depends_on:
       - redis
 
+  database:
+    image: 'mysql/mysql-server:8.0'
+    ports:
+      - '${FORWARD_DB_PORT:-3306}:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASSWORD}'
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+    volumes:
+      - 'mysql_data:/var/lib/mysql'
+    healthcheck:
+      test:
+        - CMD
+        - mysqladmin
+        - ping
+        - '-h 127.0.0.1'
+        - '-uroot'
+        - '-p${DB_ROOT_PASSWORD}'
+      retries: 3
+      timeout: 5s
+      start_period: 30s
+
   redis:
     image: redis:alpine
     command: redis-server --appendonly yes
