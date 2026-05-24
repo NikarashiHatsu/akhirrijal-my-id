@@ -9,8 +9,14 @@ export default defineConfig({
             input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,
             fonts: [
-                bunny('Instrument Sans', {
-                    weights: [400, 500, 600],
+                bunny('Inter Tight', {
+                    weights: [200, 300, 400, 500],
+                }),
+                bunny('Inter', {
+                    weights: [300, 400, 500],
+                }),
+                bunny('Tenor Sans', {
+                    weights: [400],
                 }),
             ],
         }),
