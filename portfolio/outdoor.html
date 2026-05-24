@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0A0A0A" />
+    <meta name="color-scheme" content="dark" />
+
+    <title>Outdoor — Series · Qothrul Aziz Akhirrijal Photography</title>
+    <meta name="description" content="Outdoor photography series by Qothrul Aziz Akhirrijal — travel, expedition, and adventure. Life lived under open sky, captured between the planning and the rest." />
+    <link rel="canonical" href="https://akhirrijal.my.id/portfolio/outdoor.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Outdoor Series — Qothrul Aziz Akhirrijal" />
+    <meta property="og:description" content="Travel, expedition, and adventure under open sky." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1600&q=80" />
+    <meta property="og:url" content="https://akhirrijal.my.id/portfolio/outdoor.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+    <link
+      rel="preload"
+      as="image"
+      href="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1920&q=80"
+      fetchpriority="high"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;300;400;500&family=Inter:wght@300;400;500&family=Tenor+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.css" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+
+    <script src="../assets/js/tailwind.config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.42/dist/lenis.min.js" defer></script>
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="site-nav">
+      <div class="container-wide flex items-center justify-between">
+        <a href="../index.html" class="nav-monogram" aria-label="Akhirrijal — Home">
+          Akhirrijal<span class="dot">.</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-10" aria-label="Primary">
+          <a href="../index.html" class="nav-link">Home</a>
+          <a href="../about.html" class="nav-link">About</a>
+          <a href="../portfolio.html" class="nav-link" aria-current="page">Portfolio</a>
+          <a href="../contact.html" class="nav-link">Contact</a>
+        </nav>
+        <div class="hidden md:flex items-center gap-6">
+          <a href="https://wa.me/6283824482936" class="nav-link" style="color: var(--accent)" target="_blank" rel="noopener noreferrer" data-no-transition>+6283824482936 · Available</a>
+        </div>
+        <button class="menu-toggle md:hidden" data-menu-toggle aria-label="Open menu" aria-controls="mobile-menu">Menu</button>
+      </div>
+      <div class="mobile-menu" id="mobile-menu" data-mobile-menu role="dialog" aria-modal="true" aria-label="Site menu">
+        <button class="menu-toggle menu-close" data-menu-close aria-label="Close menu">Close</button>
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../portfolio.html" aria-current="page">Portfolio</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </header>
+
+    <main data-category="outdoor">
+      <section class="subhero" aria-label="Outdoor — series cover">
+        <div class="hero-bg">
+          <img
+            src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1920&q=80"
+            srcset="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1200&q=80 1200w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1920&q=80 1920w"
+            sizes="100vw"
+            alt="Trail running through an alpine meadow at golden hour"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="hero-content container-wide">
+          <div class="max-w-4xl" data-hero-stagger>
+            <p class="font-label" style="color: var(--accent)">
+              <a href="../portfolio.html" style="color: inherit; text-decoration: none">Portfolio</a>
+              <span style="margin-inline: 0.6rem">/</span>
+              <span>Series 04</span>
+            </p>
+            <h1 class="text-display-hero mt-6">Outdoor<span class="accent-dot">.</span></h1>
+            <p class="text-lead mt-6 max-w-xl">
+              Travel, expedition, and adventure &mdash; life lived under open sky, captured between the planning and the rest.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-y-sm" aria-label="Outdoor gallery">
+        <div class="container-wide">
+          <div class="masonry columns-1 sm:columns-2 lg:columns-3" data-gallery></div>
+        </div>
+      </section>
+
+      <section class="container-wide" aria-label="Series navigation">
+        <div class="cat-nav">
+          <a href="./landscape.html">
+            <span class="label">&larr; Previous series</span>
+            <span class="name">Landscape</span>
+          </a>
+          <a href="./street.html" style="text-align: right; align-items: flex-end">
+            <span class="label">Next series &rarr;</span>
+            <span class="name">Street</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section-y" aria-label="Commission CTA">
+        <div class="container-wide grid grid-cols-1 md:grid-cols-12 gap-10 items-end">
+          <div class="md:col-span-8">
+            <p class="font-label" style="color: var(--accent)" data-reveal>Commissions</p>
+            <h2 class="text-display-xl mt-4 text-balance" data-reveal data-reveal-delay="0.05">
+              Planning a travel, hospitality, or expedition shoot?
+            </h2>
+          </div>
+          <div class="md:col-span-4 md:text-right" data-reveal data-reveal-delay="0.15">
+            <a href="../contact.html" class="btn btn-accent">
+              Start a brief <span class="arrow">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" data-reveal>
+      <div class="container-wide">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-start">
+          <div>
+            <a href="../index.html" class="footer-brand block">Akhirrijal<span style="color: var(--accent)">.</span></a>
+            <p class="mt-4 text-sm" style="color: var(--muted)">
+              Documentary &amp; outdoor photography.<br />
+              Based in Jakarta · Available worldwide.
+            </p>
+          </div>
+          <nav class="flex flex-col gap-3 md:items-center" aria-label="Footer">
+            <a href="../index.html" class="nav-link" style="font-size: 0.72rem">Home</a>
+            <a href="../about.html" class="nav-link" style="font-size: 0.72rem">About</a>
+            <a href="../portfolio.html" class="nav-link" style="font-size: 0.72rem">Portfolio</a>
+            <a href="../contact.html" class="nav-link" style="font-size: 0.72rem">Contact</a>
+          </nav>
+          <div class="flex flex-col gap-3 md:items-end">
+            <a class="link-underline text-sm" href="mailto:qothrul112358@gmail.com" data-no-transition>qothrul112358@gmail.com</a>
+            <a class="link-underline text-sm" href="https://wa.me/6283824482936" target="_blank" rel="noopener noreferrer" data-no-transition>WhatsApp · +62 838-2448-2936</a>
+            <a class="link-underline text-sm" href="https://instagram.com/senandung_hujan" target="_blank" rel="noopener noreferrer" data-no-transition>Instagram · @senandung_hujan</a>
+            <a class="link-underline text-sm" href="https://akhirrijal.my.id" target="_blank" rel="noopener noreferrer" data-no-transition>akhirrijal</a>
+          </div>
+        </div>
+        <hr class="rule mt-14" />
+        <div class="mt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs" style="color: var(--muted-2); letter-spacing: 0.18em; text-transform: uppercase;">
+          <span>&copy; <span data-year>2026</span> Qothrul Aziz Akhirrijal. All rights reserved.</span>
+          <span>Crafted in Jakarta · Indonesia</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/site.js" defer></script>
+    <script src="../assets/js/data.js" defer></script>
+    <script src="../assets/js/gallery.js" defer></script>
+  </body>
+</html>

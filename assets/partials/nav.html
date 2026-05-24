@@ -1,0 +1,47 @@
+<!--
+  Canonical NAV partial. Reference only — this exact markup is inlined
+  into the <header> of every page. When updating, update every page.
+
+  Use aria-current="page" on the link matching the current page.
+  Relative path prefix may need adjusting (e.g. ../ for /portfolio/* pages).
+-->
+<header class="site-nav">
+  <div class="container-wide flex items-center justify-between">
+    <a href="./index.html" class="nav-monogram" aria-label="Akhirrijal — Home">
+      Akhirrijal<span class="dot">.</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-10" aria-label="Primary">
+      <a href="./index.html" class="nav-link">Home</a>
+      <a href="./about.html" class="nav-link">About</a>
+      <a href="./portfolio.html" class="nav-link">Portfolio</a>
+      <a href="./contact.html" class="nav-link">Contact</a>
+    </nav>
+
+    <div class="hidden md:flex items-center gap-6">
+      <a
+        href="https://wa.me/6283824482936"
+        class="nav-link"
+        style="color: var(--accent)"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-no-transition
+      >+6283824482936 · Available</a>
+    </div>
+
+    <button
+      class="menu-toggle md:hidden"
+      data-menu-toggle
+      aria-label="Open menu"
+      aria-controls="mobile-menu"
+    >Menu</button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" data-mobile-menu role="dialog" aria-modal="true" aria-label="Site menu">
+    <button class="menu-toggle menu-close" data-menu-close aria-label="Close menu">Close</button>
+    <a href="./index.html">Home</a>
+    <a href="./about.html">About</a>
+    <a href="./portfolio.html">Portfolio</a>
+    <a href="./contact.html">Contact</a>
+  </div>
+</header>
