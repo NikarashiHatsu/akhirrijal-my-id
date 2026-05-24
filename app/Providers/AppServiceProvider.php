@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Photo;
 use App\Observers\PhotoObserver;
 use App\View\Composers\PublicLayoutComposer;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,6 +24,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if (app()->environment(['staging', 'production'])) {
+            $this->app['request']->server->set('HTTPS', true);
+
+            URL::forceScheme('https');
+        }
+
         Photo::observe(PhotoObserver::class);
 
         View::composer([

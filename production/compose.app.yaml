@@ -1,0 +1,71 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: production/Dockerfile
+    image: akhirrijal:${APP_TAG:-latest}
+    ports:
+      - "80:8080"
+      - "443:8443"
+    volumes:
+      - laravel_storage:/var/www/html/storage
+      - laravel_cache:/var/www/html/bootstrap/cache
+      # - ./certs/server.crt:/etc/ssl/private/self-signed-web.crt:ro
+      # - ./certs/server.key:/etc/ssl/private/self-signed-web.key:ro
+    environment:
+      # OPCache for Production Environment
+      PHP_OPCACHE_ENABLE: "${PHP_OPCACHE_ENABLE:-1}"
+      # Nginx Configurations
+      NGINX_WEBROOT: "${NGINX_WEBROOT:-/var/www/html/public}"
+      NGINX_ACCESS_LOG: "${NGINX_ACCESS_LOG:-/dev/stdout}"
+      NGINX_ERROR_LOG: "${NGINX_ERROR_LOG:-/dev/stderr}"
+      NGINX_CLIENT_MAX_BODY_SIZE: "${NGINX_CLIENT_MAX_BODY_SIZE:-100M}"
+      NGINX_FASTCGI_BUFFERS: "${NGINX_FASTCGI_BUFFERS:-32 32k}"
+      NGINX_FASTCGI_BUFFER_SIZE: "${NGINX_FASTCGI_BUFFER_SIZE:-64k}"
+      NGINX_SERVER_TOKENS: "${NGINX_SERVER_TOKENS:-off}"
+      NGINX_LISTEN_IP_PROTOCOL: "${NGINX_LISTEN_IP_PROTOCOL:-all}"
+      SSL_MODE: "${SSL_MODE:-full}"
+      SSL_CERTIFICATE_FILE: "${SSL_CERTIFICATE_FILE:-/etc/ssl/private/self-signed-web.crt}"
+      SSL_PRIVATE_KEY_FILE: "${SSL_PRIVATE_KEY_FILE:-/etc/ssl/private/self-signed-web.key}"
+      HEALTHCHECK_PATH: "${HEALTHCHECK_PATH:-/healthcheck}"
+      # PHP-FPM Configurations
+      PHP_FPM_POOL_NAME: "${PHP_FPM_POOL_NAME:-www}"
+      PHP_FPM_PM_CONTROL: "${PHP_FPM_PM_CONTROL:-ondemand}"
+      PHP_FPM_PM_MAX_CHILDREN: "${PHP_FPM_PM_MAX_CHILDREN:-50}"
+      PHP_FPM_PM_START_SERVERS: "${PHP_FPM_PM_START_SERVERS:-2}"
+      PHP_FPM_PM_MIN_SPARE_SERVERS: "${PHP_FPM_PM_MIN_SPARE_SERVERS:-1}"
+      PHP_FPM_PM_MAX_SPARE_SERVERS: "${PHP_FPM_PM_MAX_SPARE_SERVERS:-3}"
+      PHP_MEMORY_LIMIT: "${PHP_MEMORY_LIMIT:-512M}"
+      PHP_MAX_EXECUTION_TIME: "${PHP_MAX_EXECUTION_TIME:-30}"
+      PHP_UPLOAD_MAX_FILE_SIZE: "${PHP_UPLOAD_MAX_FILE_SIZE:-100M}"
+      PHP_POST_MAX_SIZE: "${PHP_POST_MAX_SIZE:-100M}"
+      # Laravel Configurations
+      AUTORUN_ENABLED: "${AUTORUN_ENABLED:-false}"
+      AUTORUN_DEBUG: "${AUTORUN_DEBUG:-false}"
+      AUTORUN_LARAVEL_CONFIG_CACHE: "${AUTORUN_LARAVEL_CONFIG_CACHE:-true}"
+      AUTORUN_LARAVEL_EVENT_CACHE: "${AUTORUN_LARAVEL_EVENT_CACHE:-true}"
+      AUTORUN_LARAVEL_MIGRATION: "${AUTORUN_LARAVEL_MIGRATION:-true}"
+      AUTORUN_LARAVEL_MIGRATION_DATABASE: "${AUTORUN_LARAVEL_MIGRATION_DATABASE:-}"
+      AUTORUN_LARAVEL_MIGRATION_FORCE: "${AUTORUN_LARAVEL_MIGRATION_FORCE:-true}"
+      AUTORUN_LARAVEL_MIGRATION_ISOLATION: "${AUTORUN_LARAVEL_MIGRATION_ISOLATION:-false}"
+      AUTORUN_LARAVEL_MIGRATION_MODE: "${AUTORUN_LARAVEL_MIGRATION_MODE:-default}"
+      AUTORUN_LARAVEL_MIGRATION_SEED: "${AUTORUN_LARAVEL_MIGRATION_SEED:-false}"
+      AUTORUN_LARAVEL_MIGRATION_SKIP_DB_CHECK: "${AUTORUN_LARAVEL_MIGRATION_SKIP_DB_CHECK:-false}"
+      AUTORUN_LARAVEL_MIGRATION_TIMEOUT: "${AUTORUN_LARAVEL_MIGRATION_TIMEOUT:-30}"
+      AUTORUN_LARAVEL_OPTIMIZE: "${AUTORUN_LARAVEL_OPTIMIZE:-true}"
+      AUTORUN_LARAVEL_ROUTE_CACHE: "${AUTORUN_LARAVEL_ROUTE_CACHE:-true}"
+      AUTORUN_LARAVEL_STORAGE_LINK: "${AUTORUN_LARAVEL_STORAGE_LINK:-true}"
+      AUTORUN_LARAVEL_VIEW_CACHE: "${AUTORUN_LARAVEL_VIEW_CACHE:-true}"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
+  laravel_storage:
+  laravel_cache:
