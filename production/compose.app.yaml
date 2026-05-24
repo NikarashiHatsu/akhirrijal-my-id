@@ -5,8 +5,8 @@ services:
       dockerfile: production/Dockerfile
     image: akhirrijal:${APP_TAG:-latest}
     ports:
-      - "80:${APP_PORT:-8080}"
-      - "443:${APP_SSL_PORT:-8443}"
+      - '${APP_PORT:-80}:8080'
+      - '${APP_SSL_PORT:-443}:8443'
     volumes:
       - laravel_storage:/var/www/html/storage
       - laravel_cache:/var/www/html/bootstrap/cache
