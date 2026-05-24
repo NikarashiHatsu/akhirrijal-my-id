@@ -1,0 +1,23 @@
+{
+    "name": "Akhirrijal Photography",
+    "short_name": "Akhirrijal",
+    "description": "Documentary and outdoor photography by Qothrul Aziz Akhirrijal.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0A0A0A",
+    "theme_color": "#0A0A0A",
+    "icons": [
+        {
+            "src": "/icon-sm.png",
+            "sizes": "320x320",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icon-sm.png",
+            "sizes": "320x320",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}

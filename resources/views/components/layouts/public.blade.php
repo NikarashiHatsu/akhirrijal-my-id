@@ -30,6 +30,8 @@
         <meta name="theme-color" content="#0A0A0A" />
         <meta name="color-scheme" content="dark" />
 
+        <x-site-icons />
+
         <title>{{ $resolvedTitle }}</title>
         @if ($description)
             <meta name="description" content="{{ $description }}" />

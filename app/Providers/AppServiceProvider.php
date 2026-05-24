@@ -39,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
             'portfolio.show',
             'contact',
             'components.layouts.public',
+            'components.site-icons',
             'components.nav',
             'components.footer',
         ], PublicLayoutComposer::class);
