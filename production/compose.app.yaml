@@ -92,3 +92,4 @@ volumes:
   redis_data:
   laravel_storage:
   laravel_cache:
+  mysql_data:
