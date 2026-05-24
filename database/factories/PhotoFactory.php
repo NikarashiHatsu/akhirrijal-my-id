@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Photo;
 use App\Models\Series;
+use App\Services\PhotoImageProcessor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Http\UploadedFile;
 
@@ -27,13 +28,10 @@ class PhotoFactory extends Factory
             'pano' => [1800, 900],
         };
 
-        $file = UploadedFile::fake()->image('frame.jpg', $width, $height);
-        $path = $file->store('photos', 'public');
-
         return [
             'series_id' => Series::factory(),
             'sort_order' => fake()->numberBetween(1, 12),
-            'image_path' => $path,
+            'image_path' => '',
             'disk' => 'public',
             'width' => $width,
             'height' => $height,
@@ -45,5 +43,23 @@ class PhotoFactory extends Factory
             'taken_at' => fake()->dateTimeBetween('-2 years', 'now')->format('Y-m-d'),
             'ratio' => $ratio,
         ];
+    }
+
+    public function configure(): static
+    {
+        return $this->afterCreating(function (Photo $photo): void {
+            if (is_array($photo->variants) && $photo->variants !== []) {
+                return;
+            }
+
+            if ($photo->image_path !== '' && $photo->variants === null) {
+                return;
+            }
+
+            $upload = UploadedFile::fake()->image('frame.jpg', 1600, 1067);
+            $stagingPath = $upload->store(config('photos.staging_directory', 'uploaded/staging'), 'public');
+
+            app(PhotoImageProcessor::class)->process($photo, $stagingPath);
+        });
     }
 }

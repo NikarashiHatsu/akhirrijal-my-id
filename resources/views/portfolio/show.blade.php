@@ -54,14 +54,14 @@
                     @foreach ($photos as $index => $photo)
                         @php
                             $counter = str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT);
-                            $url = $photo->url();
+                            $lightbox = $photo->lightboxDimensions();
                         @endphp
-                        @if ($url)
+                        @if ($photo->lightboxUrl())
                             <a
                                 class="gallery-item"
-                                href="{{ $url }}"
-                                data-pswp-width="{{ $photo->width ?? 1600 }}"
-                                data-pswp-height="{{ $photo->height ?? 1067 }}"
+                                href="{{ $photo->lightboxUrl() }}"
+                                data-pswp-width="{{ $lightbox['width'] }}"
+                                data-pswp-height="{{ $lightbox['height'] }}"
                                 data-pswp-title="{{ $photo->title }}"
                                 data-pswp-story="{{ $photo->story }}"
                                 data-pswp-location="{{ $photo->location }}"
@@ -71,7 +71,9 @@
                                 aria-label="Open photo {{ $index + 1 }} of {{ $photos->count() }}: {{ $photo->title }}"
                             >
                                 <img
-                                    src="{{ $url }}"
+                                    src="{{ $photo->displayUrl(900) }}"
+                                    srcset="{{ $photo->srcset() }}"
+                                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                                     alt="{{ $photo->alt ?? $photo->title }}"
                                     loading="lazy"
                                     decoding="async"

@@ -2,7 +2,6 @@
 
 use App\Models\Photo;
 use App\Models\Series;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 it('persists the documented columns on a photo', function () {
@@ -34,6 +33,9 @@ it('persists the documented columns on a photo', function () {
 });
 
 it('belongs to a series', function () {
+    Storage::fake('local');
+    Storage::fake('public');
+
     $series = Series::factory()->create();
     $photo = Photo::factory()->create(['series_id' => $series->id]);
 
@@ -41,24 +43,27 @@ it('belongs to a series', function () {
         ->and($photo->series->is($series))->toBeTrue();
 });
 
-it('exposes the public url of the uploaded image', function () {
+it('exposes the public url of the compressed image', function () {
+    Storage::fake('local');
     Storage::fake('public');
 
-    $file = UploadedFile::fake()->image('frame.jpg', 1600, 1067);
-    $path = $file->store('photos', 'public');
+    $series = Series::factory()->create();
+    $photo = Photo::factory()->create(['series_id' => $series->id]);
 
-    $photo = Photo::factory()->create([
-        'image_path' => $path,
-        'disk' => 'public',
-    ]);
-
-    expect($photo->url())->toContain('/storage/photos/');
+    expect($photo->url())
+        ->toContain('/storage/uploaded/compressed/')
+        ->toContain('.webp')
+        ->not->toContain('uploaded/original');
 });
 
-it('seeds an image via the factory using a faked uploaded image', function () {
+it('seeds compressed variants via the factory using a faked uploaded image', function () {
+    Storage::fake('local');
     Storage::fake('public');
 
     $photo = Photo::factory()->create();
 
     Storage::disk('public')->assertExists($photo->image_path);
+    Storage::disk('local')->assertExists($photo->original_path);
+
+    expect($photo->variants)->toBeArray()->not->toBeEmpty();
 });

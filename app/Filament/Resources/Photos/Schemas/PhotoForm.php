@@ -81,12 +81,13 @@ class PhotoForm
                     ->columns(2)
                     ->schema([
                         FileUpload::make('image_path')
+                            ->label('Upload')
                             ->image()
                             ->imageEditor()
                             ->required()
-                            ->visibility('public')
-                            ->directory('photos')
-                            ->columnSpanFull(),
+                            ->directory(config('photos.staging_directory', 'uploaded/staging'))
+                            ->columnSpanFull()
+                            ->helperText('Originals are archived privately. The public site only serves compressed WebP variants.'),
                         Hidden::make('disk')->default('public'),
                         TextInput::make('width')->numeric(),
                         TextInput::make('height')->numeric(),
