@@ -39,3 +39,12 @@ it('renders editable home copy from the profile', function () {
     $response->assertSeeText('First line of work heading.');
     $response->assertSeeText('Second line of work heading.');
 });
+
+it('renders series tiles with their configured aspect ratios', function () {
+    $series = Series::query()->ordered()->firstOrFail();
+
+    $response = $this->get(route('home'));
+
+    $response->assertOk();
+    $response->assertSee('aspect-ratio: '.$series->aspect_ratio.';', false);
+});

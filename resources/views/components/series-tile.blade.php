@@ -7,6 +7,7 @@
 @php
     $count = $frameCount ?? $series->photos()->count();
     $counter = str_pad((string) $index, 2, '0', STR_PAD_LEFT);
+    $aspect = $series->aspect_ratio ?: '4/3';
     $imageUrl = $series->cover_image_path
         ? \Illuminate\Support\Facades\Storage::disk('public')->url($series->cover_image_path)
         : \App\Support\NativeFallbacks::seriesCoverUrl($series->slug);
@@ -14,7 +15,7 @@
 @endphp
 
 <a href="{{ route('portfolio.show', $series) }}" class="tile" data-reveal-child>
-    <div class="tile-media">
+    <div class="tile-media" style="aspect-ratio: {{ $aspect }};">
         <img
             src="{{ $imageUrl }}"
             alt="{{ $alt }}"
