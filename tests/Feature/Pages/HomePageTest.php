@@ -21,3 +21,21 @@ it('renders the home page with hero, manifesto, and four series tiles', function
     $response->assertSeeText('Available worldwide');
     $response->assertSeeText('Selected work');
 });
+
+it('renders editable home copy from the profile', function () {
+    Profile::query()->delete();
+
+    Profile::factory()->create([
+        'hero_lead' => 'Custom hero lead copy for the home page.',
+        'home_about_heading' => 'Custom about heading on the home page.',
+        'home_selected_work_heading' => "First line of work heading.\nSecond line of work heading.",
+    ]);
+
+    $response = $this->get(route('home'));
+
+    $response->assertOk();
+    $response->assertSeeText('Custom hero lead copy for the home page.');
+    $response->assertSeeText('Custom about heading on the home page.');
+    $response->assertSeeText('First line of work heading.');
+    $response->assertSeeText('Second line of work heading.');
+});

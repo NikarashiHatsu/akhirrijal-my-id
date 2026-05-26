@@ -39,6 +39,21 @@ class ProfileForm
                             ->maxLength(255),
                     ]),
 
+                Section::make('Home page copy')
+                    ->description('Headlines and lead text shown on the home page.')
+                    ->columns(1)
+                    ->schema([
+                        Textarea::make('hero_lead')
+                            ->rows(2)
+                            ->helperText('Lead paragraph beneath the hero headline.'),
+                        TextInput::make('home_about_heading')
+                            ->helperText('About section heading on the home page.')
+                            ->maxLength(255),
+                        Textarea::make('home_selected_work_heading')
+                            ->rows(2)
+                            ->helperText('Selected work section heading. Use a blank line for a line break.'),
+                    ]),
+
                 Section::make('Story')
                     ->columns(1)
                     ->schema([

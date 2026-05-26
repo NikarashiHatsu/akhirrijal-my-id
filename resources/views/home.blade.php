@@ -63,7 +63,7 @@
                     {!! str_replace(' · ', ' &nbsp;·&nbsp; ', e($profile->specializations ?? 'Street · Human Interest · Landscape Photographer')) !!}
                 </p>
                 <p class="text-lead mt-6 max-w-xl">
-                    Capturing authentic human moments, stories, and landscapes through visual storytelling.
+                    {{ $profile->hero_lead ?? 'Capturing authentic human moments, stories, and landscapes through visual storytelling.' }}
                 </p>
                 <div class="mt-10 flex flex-wrap gap-4">
                     <a href="{{ route('portfolio.index') }}" class="btn btn-accent">
@@ -97,7 +97,7 @@
             <div class="md:col-span-7 md:pl-8">
                 <p class="font-label" data-reveal>About</p>
                 <h2 class="text-display-xl mt-4 text-balance" data-reveal data-reveal-delay="0.05">
-                    A documentary eye for outdoor and hospitality storytelling.
+                    {{ $profile->home_about_heading ?? 'A documentary eye for outdoor and hospitality storytelling.' }}
                 </h2>
                 @php
                     $bioParagraphs = $profile->bio
@@ -124,7 +124,7 @@
                 <div>
                     <p class="font-label" data-reveal>Selected work</p>
                     <h2 class="text-display-xl mt-4 text-balance" data-reveal data-reveal-delay="0.05">
-                        Four disciplines,<br />one eye.
+                        {!! nl2br(e($profile->home_selected_work_heading ?? "Four disciplines,\none eye.")) !!}
                     </h2>
                 </div>
                 <a

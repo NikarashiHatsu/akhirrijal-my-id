@@ -16,6 +16,9 @@ class ProfileSeeder extends Seeder
             'job_title' => 'Photographer',
             'tagline' => 'Documentary & Outdoor Photographer',
             'specializations' => 'Street · Human Interest · Landscape Photographer',
+            'hero_lead' => 'Capturing authentic human moments, stories, and landscapes through visual storytelling.',
+            'home_about_heading' => 'A documentary eye for outdoor and hospitality storytelling.',
+            'home_selected_work_heading' => "Four disciplines,\none eye.",
             'bio' => <<<'BIO'
 I'm Qothrul Aziz Akhirrijal — a freelance photographer based in Jakarta, Indonesia. My work is about authentic moments and the wide breath of the outdoor world: street markets at dawn, the stillness of mountain ridges, and the unscripted in-between of travel. I look for emotion, character, and atmosphere, and I try not to interrupt them.
 
