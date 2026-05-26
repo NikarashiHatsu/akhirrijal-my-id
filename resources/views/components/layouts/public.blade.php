@@ -56,6 +56,8 @@
         {{ $head ?? '' }}
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script defer src="https://umami.shiroyuki.dev/script.js" data-website-id="4d400d8b-e9a8-48b7-ac04-41fcb72ff96a"></script>
+        <script defer src="https://umami.shiroyuki.dev/recorder.js" data-website-id="4d400d8b-e9a8-48b7-ac04-41fcb72ff96a" data-sample-rate="0.15" data-mask-level="moderate" data-max-duration="300000"></script>
     </head>
     <body @class([$bodyClass])>
         <div class="grain" aria-hidden="true"></div>
