@@ -1,8 +1,8 @@
 services:
   app:
     build:
-      context: ..
-      dockerfile: production/Dockerfile
+      context: .
+      dockerfile: Dockerfile
       args:
         USER_ID: ${USER_ID:-${UID:-1000}}
         GROUP_ID: ${GROUP_ID:-${GID:-1000}}
@@ -12,6 +12,7 @@ services:
       - '${APP_PORT:-80}:8080'
       - '${APP_SSL_PORT:-443}:8443'
     volumes:
+      - ../:/var/www/html
       - laravel_storage:/var/www/html/storage
       - laravel_cache:/var/www/html/bootstrap/cache
       # - ./certs/server.crt:/etc/ssl/private/self-signed-web.crt:ro
