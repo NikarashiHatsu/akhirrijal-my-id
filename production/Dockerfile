@@ -1,22 +1,13 @@
-FROM serversideup/php:8.4-fpm-nginx
+FROM serversideup/php:8.4.27-fpm-nginx
 
 USER root
 
-RUN curl -fsSL https://bun.sh/install | bash && \
-    mv /root/.bun/bin/bun /usr/local/bin/
+ARG USER_ID
+ARG GROUP_ID
 
 RUN install-php-extensions intl bcmath gd ftp
 
-ENV PATH="/usr/local/bin:${PATH}"
-
-WORKDIR /var/www/html
-
-COPY . .
-
-RUN composer install && \
-    bun install && \
-    bun run build && \
-    chown -R www-data:www-data /var/www/html && \
-    chmod -R 755 /var/www/html
+RUN docker-php-serversideup-set-id www-data $USER_ID:$GROUP_ID && \
+    docker-php-serversideup-set-file-permissions --owner $USER_ID:$GROUP_ID
 
 USER www-data
