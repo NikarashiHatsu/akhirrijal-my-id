@@ -3,6 +3,9 @@ services:
     build:
       context: ..
       dockerfile: production/Dockerfile
+      args:
+        USER_ID: ${USER_ID:-${UID:-1000}}
+        GROUP_ID: ${GROUP_ID:-${GID:-1000}}
     image: akhirrijal:${APP_TAG:-latest}
     restart: unless-stopped
     ports:

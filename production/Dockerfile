@@ -2,8 +2,8 @@ FROM serversideup/php:8.4.27-fpm-nginx
 
 USER root
 
-ARG USER_ID
-ARG GROUP_ID
+ARG USER_ID=1000
+ARG GROUP_ID=1000
 
 RUN install-php-extensions intl bcmath gd ftp
 
